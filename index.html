@@ -1,36 +1,67 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tris Spaziale</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tris Spaziale XR</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>🎮 Tris Spaziale</h1>
-    <div id="message">Turno di X</div>
-    <div class="grid">
-      <div class="cell" data-index="0"></div>
-      <div class="cell" data-index="1"></div>
-      <div class="cell" data-index="2"></div>
-      <div class="cell" data-index="3"></div>
-      <div class="cell" data-index="4"></div>
-      <div class="cell" data-index="5"></div>
-      <div class="cell" data-index="6"></div>
-      <div class="cell" data-index="7"></div>
-      <div class="cell" data-index="8"></div>
-    </div>
-    <div class="score">
-      <span id="scoreX">X: 0</span> | <span id="scoreO">O: 0</span>
-    </div>
-    <button id="restart">Ricomincia Partita</button>
+
+<!-- MENU DI PARTENZA -->
+<div id="menu">
+  <h1>Tris Spaziale XR</h1>
+  <button onclick="startGame('2players')">2 Giocatori</button>
+  <button onclick="showRobotMenu()">Gioca con il Robot</button>
+  <button onclick="showSettings()">Impostazioni</button>
+</div>
+
+<!-- SELEZIONE DIFFICOLTÀ ROBOT -->
+<div id="robotMenu" class="hidden">
+  <h2>Seleziona Difficoltà Robot</h2>
+  <button onclick="startGameRobot('easy')">Facile</button>
+  <button onclick="startGameRobot('medium')">Medio</button>
+  <button onclick="startGameRobot('hard')">Difficile</button>
+  <button onclick="backToMenu()">Indietro</button>
+</div>
+
+<!-- IMPOSTAZIONI -->
+<div id="settings" class="hidden">
+  <h2>Impostazioni</h2>
+  <label>Colore X: <input type="color" id="colorX" value="#ff0000"></label><br>
+  <label>Colore O: <input type="color" id="colorO" value="#00ff00"></label><br>
+  <label><input type="checkbox" id="soundToggle" checked> Suoni attivi</label><br>
+  <button onclick="saveSettings()">Salva e Torna al Menu</button>
+</div>
+
+<!-- GIOCO -->
+<div id="game" class="hidden">
+  <h2 id="turn">Turno: Giocatore X</h2>
+  <div id="board">
+    <div class="cell" onclick="makeMove(0)"></div>
+    <div class="cell" onclick="makeMove(1)"></div>
+    <div class="cell" onclick="makeMove(2)"></div>
+    <div class="cell" onclick="makeMove(3)"></div>
+    <div class="cell" onclick="makeMove(4)"></div>
+    <div class="cell" onclick="makeMove(5)"></div>
+    <div class="cell" onclick="makeMove(6)"></div>
+    <div class="cell" onclick="makeMove(7)"></div>
+    <div class="cell" onclick="makeMove(8)"></div>
   </div>
+  <div id="score">
+    <p>Giocatore X: <span id="scoreX">0</span></p>
+    <p>Giocatore O: <span id="scoreO">0</span></p>
+    <p>Pareggi: <span id="scoreDraw">0</span></p>
+  </div>
+  <button onclick="resetBoard()">Nuova Partita</button>
+  <button onclick="resetScores()">Reset Punteggi</button>
+</div>
 
-  <audio id="clickSound" src="click.mp3"></audio>
-  <audio id="winSound" src="win.mp3"></audio>
-  <audio id="drawSound" src="draw.mp3"></audio>
+<!-- AUDIO -->
+<audio id="clickSound" src="click.mp3"></audio>
+<audio id="winSound" src="win.mp3"></audio>
+<audio id="drawSound" src="draw.mp3"></audio>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

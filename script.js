@@ -7,6 +7,7 @@ let difficulty = "easy";
 let colorX = "#ff0000";
 let colorO = "#00ff00";
 let soundActive = true;
+let defaultBackground = "radial-gradient(circle, #0a0a2a, #000)";
 
 /* --- MENU --- */
 function startGame(selectedMode){
@@ -29,6 +30,11 @@ function backToMenu(){
   document.getElementById("menu").classList.remove("hidden");
 }
 
+function backToMenuFromGame(){
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("menu").classList.remove("hidden");
+}
+
 function startGameRobot(selectedDifficulty){
   difficulty = selectedDifficulty;
   startGame("robot");
@@ -43,12 +49,25 @@ function saveSettings(){
   colorX = document.getElementById("colorX").value;
   colorO = document.getElementById("colorO").value;
   soundActive = document.getElementById("soundToggle").checked;
+
+  // aggiorna anteprime
+  document.getElementById("previewX").style.backgroundColor = colorX;
+  document.getElementById("previewO").style.backgroundColor = colorO;
+
   backToMenu();
 }
 
 function applyBackground(){
   let url = document.getElementById("bgUrl").value;
-  if(url) document.body.style.backgroundImage = `url('${url}')`;
+  if(url) {
+    document.body.style.backgroundImage = `url('${url}')`;
+    document.body.style.backgroundColor = "transparent";
+  }
+}
+
+function resetBackground(){
+  document.body.style.backgroundImage = "";
+  document.body.style.background = defaultBackground;
 }
 
 /* --- GIOCO --- */

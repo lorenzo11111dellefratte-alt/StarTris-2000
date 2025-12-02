@@ -31,12 +31,15 @@
   <label>Colore X: <input type="color" id="colorX" value="#ff0000"></label><br>
   <label>Colore O: <input type="color" id="colorO" value="#00ff00"></label><br>
   <label><input type="checkbox" id="soundToggle" checked> Suoni attivi</label><br>
+  <label>Sfondo personalizzato: <input type="text" id="bgUrl" placeholder="Inserisci URL immagine"></label>
+  <button onclick="applyBackground()">Applica sfondo</button><br>
   <button onclick="saveSettings()">Salva e Torna al Menu</button>
 </div>
 
 <!-- GIOCO -->
 <div id="game" class="hidden">
   <h2 id="turn">Turno: Giocatore X</h2>
+
   <div id="board">
     <div class="cell" onclick="makeMove(0)"></div>
     <div class="cell" onclick="makeMove(1)"></div>
@@ -48,13 +51,23 @@
     <div class="cell" onclick="makeMove(7)"></div>
     <div class="cell" onclick="makeMove(8)"></div>
   </div>
+
   <div id="score">
     <p>Giocatore X: <span id="scoreX">0</span></p>
     <p>Giocatore O: <span id="scoreO">0</span></p>
     <p>Pareggi: <span id="scoreDraw">0</span></p>
   </div>
+
   <button onclick="resetBoard()">Nuova Partita</button>
   <button onclick="resetScores()">Reset Punteggi</button>
+</div>
+
+<!-- POPUP FINE PARTITA -->
+<div id="popup" class="hidden">
+  <div id="popupBox">
+    <h2 id="popupText"></h2>
+    <button onclick="closePopup()">OK</button>
+  </div>
 </div>
 
 <!-- AUDIO -->

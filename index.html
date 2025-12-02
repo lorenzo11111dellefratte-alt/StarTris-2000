@@ -28,11 +28,18 @@
 <!-- IMPOSTAZIONI -->
 <div id="settings" class="hidden">
   <h2>Impostazioni</h2>
-  <label>Colore X: <input type="color" id="colorX" value="#ff0000"></label><br>
-  <label>Colore O: <input type="color" id="colorO" value="#00ff00"></label><br>
+  <label>Colore X: <input type="color" id="colorX" value="#ff0000"></label>
+  <span id="previewX" class="colorPreview" style="background-color:#ff0000;"></span><br>
+
+  <label>Colore O: <input type="color" id="colorO" value="#00ff00"></label>
+  <span id="previewO" class="colorPreview" style="background-color:#00ff00;"></span><br>
+
   <label><input type="checkbox" id="soundToggle" checked> Suoni attivi</label><br>
+
   <label>Sfondo personalizzato: <input type="text" id="bgUrl" placeholder="Inserisci URL immagine"></label>
-  <button onclick="applyBackground()">Applica sfondo</button><br>
+  <button onclick="applyBackground()">Applica</button>
+  <button onclick="resetBackground()">Sfondo predefinito</button><br>
+
   <button onclick="saveSettings()">Salva e Torna al Menu</button>
 </div>
 
@@ -60,6 +67,7 @@
 
   <button onclick="resetBoard()">Nuova Partita</button>
   <button onclick="resetScores()">Reset Punteggi</button>
+  <button onclick="backToMenuFromGame()">Torna alla Home</button>
 </div>
 
 <!-- POPUP FINE PARTITA -->

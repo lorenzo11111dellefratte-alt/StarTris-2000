@@ -43,6 +43,8 @@ function startGameRobot(selectedDifficulty){
 function showSettings(){
   document.getElementById("menu").classList.add("hidden");
   document.getElementById("settings").classList.remove("hidden");
+  document.getElementById("previewX").style.backgroundColor = colorX;
+  document.getElementById("previewO").style.backgroundColor = colorO;
 }
 
 function saveSettings(){
@@ -50,18 +52,20 @@ function saveSettings(){
   colorO = document.getElementById("colorO").value;
   soundActive = document.getElementById("soundToggle").checked;
 
-  // aggiorna anteprime
   document.getElementById("previewX").style.backgroundColor = colorX;
   document.getElementById("previewO").style.backgroundColor = colorO;
 
   backToMenu();
 }
 
+/* --- SFONDO --- */
 function applyBackground(){
-  let url = document.getElementById("bgUrl").value;
-  if(url) {
+  let url = document.getElementById("bgUrl").value.trim();
+  if(url){
     document.body.style.backgroundImage = `url('${url}')`;
     document.body.style.backgroundColor = "transparent";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
   }
 }
 

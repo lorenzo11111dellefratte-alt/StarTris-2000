@@ -1,32 +1,35 @@
+
 let board = [];
 let turn = "X";
-let mode = "2players";
+let mode = "2p";
 let difficulty = "easy";
-let robotThinking = false;
-
 let colorX = "#ff0000";
 let colorO = "#00ff00";
+let robotBusy = false;
 
-const boardElement = document.getElementById("board");
-
-/* ------------------------- CREAZIONE CASELLE --------------------------- */
+/* ---------- CREA TRIS ---------- */
 function createBoard() {
-    boardElement.innerHTML = "";
+    const boardDiv = document.getElementById("board");
+    boardDiv.innerHTML = "";
     board = ["", "", "", "", "", "", "", "", ""];
 
     for (let i = 0; i < 9; i++) {
         let cell = document.createElement("div");
         cell.className = "cell";
         cell.onclick = () => makeMove(i);
-        boardElement.appendChild(cell);
+        boardDiv.appendChild(cell);
     }
 }
 
-/* ------------------------------ MENU ---------------------------------- */
+/* ---------- MENU ---------- */
+function hideAll() {
+    document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+}
+
 function startGame(selectedMode) {
     mode = selectedMode;
     turn = "X";
-    robotThinking = false;
+    robotBusy = false;
 
     hideAll();
     document.getElementById("game").classList.remove("hidden");
@@ -55,11 +58,7 @@ function exitToMenu() {
     document.getElementById("menu").classList.remove("hidden");
 }
 
-function hideAll() {
-    document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
-}
-
-/* -------------------------- IMPOSTAZIONI ------------------------------- */
+/* ---------- IMPOSTA SFONDO ---------- */
 function applyBackground() {
     let file = document.getElementById("bgInput").files[0];
     if (!file) return;
@@ -75,27 +74,27 @@ function resetBackground() {
     document.body.style.background = "radial-gradient(circle, #0a0a2a, #000)";
 }
 
-/* --------------------------- ROBOT MODE -------------------------------- */
+/* ---------- ROBOT ---------- */
 function startGameRobot(diff) {
     difficulty = diff;
     startGame("robot");
 }
 
 function robotMove() {
-    robotThinking = true;
+    robotBusy = true;
 
     let empty = board.map((v, i) => v === "" ? i : null).filter(i => i !== null);
     let move = empty[Math.floor(Math.random() * empty.length)];
 
     makeMove(move, true);
-    robotThinking = false;
+    robotBusy = false;
 }
 
-/* --------------------------- GIOCO ------------------------------------ */
-function makeMove(index, isRobot = false) {
+/* ---------- MOSSA PLAYER ---------- */
+function makeMove(index, robot = false) {
     if (board[index] !== "") return;
-    if (mode === "robot" && turn === "O" && !isRobot) return;
-    if (robotThinking) return;
+    if (mode === "robot" && turn === "O" && !robot) return;
+    if (robotBusy) return;
 
     board[index] = turn;
 
@@ -119,7 +118,7 @@ function makeMove(index, isRobot = false) {
     updateTurn();
 
     if (mode === "robot" && turn === "O") {
-        setTimeout(robotMove, 50);
+        setTimeout(robotMove, 80);
     }
 }
 
@@ -127,15 +126,13 @@ function updateTurn() {
     document.getElementById("turn").textContent = "Turno: " + turn;
 }
 
-/* ------------------------- CONTROLLO VITTORIA -------------------------- */
+/* ---------- VITTORIA ---------- */
 function checkWin() {
     const wins = [
-        [0,1,2], [3,4,5], [6,7,8],
-        [0,3,6], [1,4,7], [2,5,8],
-        [0,4,8], [2,4,6]
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
     ];
 
-    return wins.some(pattern => 
-        pattern.every(i => board[i] === turn)
-    );
+    return wins.some(p => p.every(i => board[i] === turn));
 }

@@ -1,5 +1,6 @@
+/* BASE STILE */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   text-align: center;
   margin: 0;
   padding: 0;
@@ -11,24 +12,43 @@ body {
   align-items: center;
 }
 
+/* SCREEN NASCOSTI */
 .hidden { display: none; }
+.screen { display: flex; flex-direction: column; align-items: center; }
 
-h1, h2 { margin: 20px; }
+/* TITOLI */
+.title { font-size: 48px; margin: 20px; text-shadow: 0 0 10px #0ff; }
 
+/* PULSANTI GRANDI */
 .big-btn {
-  width: 250px;
-  height: 70px;
-  font-size: 24px;
+  width: 280px;
+  height: 80px;
+  font-size: 28px;
   margin: 15px;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 20px;
   background: linear-gradient(45deg,#ff0077,#00ffff);
   color: white;
   border: none;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.3s;
 }
-.big-btn:hover { transform: scale(1.1); }
+.big-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px #0ff; }
 
+/* PULSANTI PICCOLI */
+.small-btn {
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+  margin: 5px;
+  border-radius: 10px;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.small-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px #0ff; }
+
+/* TRIS BOARD */
 #board {
   display: grid;
   grid-template-columns: repeat(3, 120px);
@@ -38,21 +58,25 @@ h1, h2 { margin: 20px; }
   margin: 20px auto;
 }
 
+/* CELLE */
 .cell {
-  background: #111;
-  border: 3px solid #555;
-  border-radius: 20px;
+  background: rgba(20,20,20,0.9);
+  border: 3px solid #0ff;
+  border-radius: 25px;
   font-size: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, box-shadow 0.3s;
 }
-.cell:hover { background: #222; }
+.cell:hover { background: rgba(50,50,50,0.9); box-shadow: 0 0 20px #0ff; }
 
-#score p { font-size: 20px; margin: 5px; }
+/* SCORE */
+#score p { font-size: 22px; margin: 5px; }
 
+/* SETTINGS */
 .setting { margin: 15px; font-size: 18px; }
 
+/* CONTATORE */
 .counter { margin: 30px 0; font-size: 20px; }

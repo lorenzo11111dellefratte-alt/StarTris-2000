@@ -1,89 +1,58 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: radial-gradient(circle, #0a0a2a, #000);
-    background-size: cover;
-    background-position: center;
-    color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle, #0a0a2a, #000);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
 
-.title {
-    font-size: 42px;
-    margin-top: 40px;
-}
+h1, h2 { margin: 20px; }
 
-.subtitle {
-    font-size: 32px;
-    margin: 20px 0;
+.big-btn {
+  width: 250px;
+  height: 70px;
+  font-size: 24px;
+  margin: 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  background: linear-gradient(45deg,#ff0077,#00ffff);
+  color: white;
+  border: none;
+  transition: transform 0.2s;
 }
-
-.menu-btn {
-    width: 80%;
-    max-width: 400px;
-    padding: 20px;
-    font-size: 22px;
-    margin: 15px auto;
-    display: block;
-    border: none;
-    border-radius: 15px;
-    background: #222;
-    color: white;
-}
-
-.menu-btn:hover {
-    background: #444;
-}
-
-.back-btn {
-    margin-top: 20px;
-    padding: 15px 25px;
-    font-size: 20px;
-    border-radius: 12px;
-    border: none;
-}
+.big-btn:hover { transform: scale(1.1); }
 
 #board {
-    width: 90vw;
-    max-width: 420px;
-    height: 90vw;
-    max-height: 420px;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  grid-gap: 15px;
+  justify-content: center;
+  margin: 20px auto;
 }
 
 .cell {
-    background: rgba(0,0,0,0.6);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12vw;
-    max-font-size: 110px;
-    cursor: pointer;
-    user-select: none;
-    color: white;
-    transition: 0.2s;
+  background: #111;
+  border: 3px solid #555;
+  border-radius: 20px;
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
 }
+.cell:hover { background: #222; }
 
-.cell:hover {
-    background: rgba(50,50,50,0.7);
-}
+#score p { font-size: 20px; margin: 5px; }
 
-label {
-    font-size: 20px;
-    display: block;
-    margin-top: 15px;
-}
+.setting { margin: 15px; font-size: 18px; }
 
-input[type=color], input[type=file] {
-    margin: 10px;
-    transform: scale(1.2);
-}
+.counter { margin: 30px 0; font-size: 20px; }

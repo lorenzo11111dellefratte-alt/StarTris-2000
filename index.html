@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- MENU DI PARTENZA -->
+<!-- HOME MENU -->
 <div id="menu">
   <h1>Tris Spaziale XR</h1>
   <button class="menu-btn" onclick="startGame('2players')">2 Giocatori</button>
@@ -16,41 +16,45 @@
   <button class="menu-btn" onclick="showSettings()">Impostazioni</button>
 </div>
 
-<!-- SELEZIONE DIFFICOLTÀ ROBOT -->
+<!-- ROBOT DIFFICULTY -->
 <div id="robotMenu" class="hidden">
-  <h2>Seleziona Difficoltà Robot</h2>
+  <h2>Difficoltà Robot</h2>
   <button class="menu-btn" onclick="startGameRobot('easy')">Facile</button>
   <button class="menu-btn" onclick="startGameRobot('medium')">Medio</button>
   <button class="menu-btn" onclick="startGameRobot('hard')">Difficile</button>
   <button class="menu-btn" onclick="backToMenu()">Indietro</button>
 </div>
 
-<!-- IMPOSTAZIONI -->
+<!-- SETTINGS -->
 <div id="settings" class="hidden">
   <h2>Impostazioni</h2>
 
-  <div class="color-setting">
+  <div class="setting-row">
     <label>Colore X:</label>
-    <div class="color-box" id="previewX"></div>
     <input type="color" id="colorX" value="#ff0000">
   </div>
 
-  <div class="color-setting">
+  <div class="setting-row">
     <label>Colore O:</label>
-    <div class="color-box" id="previewO"></div>
     <input type="color" id="colorO" value="#00ff00">
   </div>
 
-  <label><input type="checkbox" id="soundToggle" checked> Suoni attivi</label><br>
+  <div class="setting-row">
+    <label>Suoni attivi</label>
+    <input type="checkbox" id="soundToggle" checked>
+  </div>
 
-  <label>Sfondo personalizzato: <input type="text" id="bgUrl" placeholder="Inserisci URL immagine"></label><br>
-  <button class="menu-btn" onclick="applyBackground()">Applica Sfondo</button>
-  <button class="menu-btn" onclick="resetBackground()">Sfondo Predefinito</button><br>
+  <div class="setting-row">
+    <label>Sfondo da file:</label>
+    <input type="file" id="bgFile">
+  </div>
 
-  <button class="menu-btn" onclick="saveSettings()">Salva e Torna al Menu</button>
+  <button class="menu-btn" onclick="applyBackgroundFile()">Applica Sfondo</button>
+  <button class="menu-btn" onclick="resetBackground()">Sfondo Predefinito</button>
+  <button class="menu-btn" onclick="backToMenu()">Torna al Menu</button>
 </div>
 
-<!-- GIOCO -->
+<!-- GAME -->
 <div id="game" class="hidden">
   <h2 id="turn">Turno: Giocatore X</h2>
 
@@ -67,17 +71,17 @@
   </div>
 
   <div id="score">
-    <p>Giocatore X: <span id="scoreX">0</span></p>
-    <p>Giocatore O: <span id="scoreO">0</span></p>
+    <p>X: <span id="scoreX">0</span></p>
+    <p>O: <span id="scoreO">0</span></p>
     <p>Pareggi: <span id="scoreDraw">0</span></p>
   </div>
 
   <button class="menu-btn" onclick="resetBoard()">Nuova Partita</button>
   <button class="menu-btn" onclick="resetScores()">Reset Punteggi</button>
-  <button class="menu-btn" onclick="backToMenuFromGame()">Torna alla Home</button>
+  <button class="menu-btn" onclick="backToMenuFromGame()">Home</button>
 </div>
 
-<!-- POPUP FINE PARTITA -->
+<!-- POPUP -->
 <div id="popup" class="hidden">
   <div id="popupBox">
     <h2 id="popupText"></h2>
